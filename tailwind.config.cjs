@@ -14,6 +14,9 @@ module.exports = {
       backgroundColor: {
         "primaryDark": "#1C2932",
         "primaryLight": "#f7f7f7"
+      },
+      fontFamily: {
+        'roboto-mono': ['"Roboto Mono"', 'monospace']
       }
     },
   },

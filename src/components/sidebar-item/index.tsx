@@ -1,10 +1,9 @@
-import { NavItem, navItems } from "../../constants/sidebarItems";
+import { NavItem } from "../../constants/sidebarItems";
 import DashboardIcon from "../../icons/DashboardIcon";
 import AuthIcon from "../../icons/AuthIcon";
 import PagesIcon from "../../icons/PagesIcon";
 import ArrowDropUpIcon from "../../icons/ArrowDropUpIcon";
 import ArrowDropDownIcon from "../../icons/ArrowDropDownIcon";
-import SubItem from "./sub-item";
 
 const icons = {
   DashboardIcon,
@@ -19,9 +18,10 @@ export default function SidebarItem({
   item: NavItem;
   itemClicked: (item: NavItem) => void;
 }) {
-  const Icon = icons[item.icon];
+  const {isActive, icon, title, subItems} = item;
+  const Icon = icons[icon];
 
-  const handleItemClicked = () => {
+  const handleItemClicked = (item: NavItem) => {
     itemClicked(item);
   };
 
@@ -29,29 +29,42 @@ export default function SidebarItem({
     <>
       <div
         className={`${
-          item.isActive ? "text-white" : "text-iconPassive"
-        } hover:text-white transition-colors duration-300 flex items-center my-4 text-sm cursor-pointer`}
-        onClick={handleItemClicked}
+          isActive && subItems.length === 0 ? "text-white" : "text-iconPassive"
+        } ${
+          icon !== '-' ? 'mt-4' : 'mt-2'
+        }
+        font-semibold hover:text-white transition-colors duration-300 flex items-center text-sm cursor-pointer`}
+        onClick={() => handleItemClicked(item)}
       >
-        <div className="w-16 flex justify-center">
-          <Icon color="currentColor" size="20" />
+        {icon !== '-' && (
+          <div className="w-12 flex justify-center">
+            <Icon color="currentColor" size="20" />
+          </div>
+        )}
+        <div className="w-40 overflow-hidden flex-1">
+          <p className="text-md">{subItems.length === 0 && icon === '-' ? `- ${title}` : title}</p>
         </div>
-        <div className="w-40 overflow-hidden">
-          <p className="text-md">{item.title}</p>
-        </div>
-        {item.subItems.length > 0 && (
+        {subItems.length > 0 && (
           <div>
-            {item.isActive ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+            {isActive ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
           </div>
         )}
       </div>
-      {item.isActive && (
-        <div>
-          {item.subItems.map((subItem) => {
-            return <SubItem item={subItem} />;
-          })}
-        </div>
-      )}
+      {
+        subItems.map((subItem) => (
+          <div key={subItem.id}  
+            className={`
+                ${item.isActive ? '' : 'h-0 overflow-hidden'}
+                ${item.icon !== '-' ? 'pl-12' : ''}
+                ${item.icon === '-' && item.subItems.length > 0 ? 'pl-2' : ''}
+              `}>
+            <SidebarItem 
+              item={subItem} 
+              itemClicked={handleItemClicked} 
+            />
+          </div>
+        ))
+      }
     </>
   );
 }

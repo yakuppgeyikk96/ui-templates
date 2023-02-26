@@ -5,7 +5,7 @@ import Sidebar from "./components/sidebar";
 
 export default function App() {
   return (
-    <div className="flex">
+    <div className="flex font-roboto-mono">
       <div className="h-screen bg-primaryColor">
         <Sidebar />
       </div>

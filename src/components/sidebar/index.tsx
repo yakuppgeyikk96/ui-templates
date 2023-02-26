@@ -6,52 +6,59 @@ import SidebarItem from "../sidebar-item";
 export default function Sidebar() {
   const [sidebarItems, setSidebarItems] = useState(navItems);
 
-  const handleItemClicked = (item: NavItem) => {
-    console.log(item);
-    setSidebarItems((prevState) =>
-      prevState.map((pState) => {
-        if (pState.mainTitle === item.parentTitle) {
-          return {
-            ...pState,
-            items: pState.items.map((i) => {
-              if (i.id === item.id) {
-                return { ...item, isActive: !item.isActive };
-              }
-              else {
-                return {
-                  ...i,
-                  isActive: false,
-                }
-              }
-            }),
-          };
-        } else {
-          return {
-            ...pState,
-            items: pState.items.map((i) => {
-              return { ...i, isActive: false };
-            }),
-          };
+  const deactivateOtherItems = (navItems: { mainTitle: string; items: NavItem[] }[], clickedItemId: string) => {
+    for (const navItem of navItems) {
+      for (const item of navItem.items) {
+        if (item.id !== clickedItemId) {
+          item.isActive = false;
         }
-      })
-    );
+        if (item.subItems && item.subItems.length > 0) {
+          deactivateOtherItems([ { mainTitle: "", items: item.subItems } ], clickedItemId);
+        }
+      }
+    }
+  }
+
+  const updateActiveItem = (navItems: { mainTitle: string; items: NavItem[] }[], clickedItemId: string) => {
+    for (const navItem of navItems) {
+      for (const item of navItem.items) {
+        if (item.id === clickedItemId) {
+          if (item.subItems.length > 0) {
+            item.isActive = !item.isActive;
+          }
+          else {
+            item.isActive = true;
+          }
+
+          deactivateOtherItems(navItems, clickedItemId);
+          return [];
+        } else if (item.subItems && item.subItems.length > 0) {
+          updateActiveItem([ { mainTitle: "", items: item.subItems } ], clickedItemId);
+        }
+      }
+    }
+  }
+  
+  const handleItemClicked = (item: NavItem) => {
+    updateActiveItem(navItems, item.id);
+    setSidebarItems(() => [...navItems]);
   };
 
   return (
-    <aside className="w-56">
+    <aside className="w-60">
       <div className="h-16 w-full flex items-center">
         <div className="w-16 flex justify-center">
           <img src={logo} alt="logo" width={32} />
         </div>
-        <div className="w-40 overflow-hidden">
-          <p className="text-xl text-white font-semibold">DeerUI</p>
+        <div className="w-44 overflow-hidden">
+          <p className="text-lg text-white font-semibold">DeerUI</p>
         </div>
       </div>
-      <div className="w-full mt-4">
+      <div className="w-full mt-4 px-2">
         {sidebarItems.map((navItem) => {
           return (
             <div className="my-8" key={`${navItem.mainTitle}-1`}>
-              <p className="px-5 text-gray-500 font-semibold text-xs">
+              <p className="px-4 text-gray-500 font-bold text-sm">
                 {navItem.mainTitle}
               </p>
               {navItem.items.map((item) => (

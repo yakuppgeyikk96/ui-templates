@@ -2,6 +2,7 @@ export interface NavItem {
   id: string;
   title: string;
   parentTitle: string;
+  groupName: string;
   link: string;
   isActive: boolean;
   icon: string;
@@ -19,6 +20,7 @@ export const navItems: {
         id: "menu-1",
         parentTitle: "MENU",
         title: "Dashboard",
+        groupName: 'MENU',
         link: "#",
         isActive: true,
         icon: "DashboardIcon",
@@ -33,6 +35,7 @@ export const navItems: {
         id: "pages-1",
         title: "Authentication",
         parentTitle: "PAGES",
+        groupName: 'PAGES',
         link: "#",
         isActive: false,
         icon: "AuthIcon",
@@ -41,6 +44,7 @@ export const navItems: {
             id: "pages-1-auth-1",
             title: "Sign In",
             parentTitle: "Authentication",
+            groupName: 'PAGES',
             link: "#",
             isActive: false,
             icon: "-",
@@ -48,11 +52,23 @@ export const navItems: {
               {
                 id: "pages-1-auth-1-basic",
                 title: "Basic",
-                parentTitle: "Authentication",
+                parentTitle: "Sign In",
+                groupName: 'PAGES',
                 link: "#",
                 isActive: false,
                 icon: "-",
-                subItems: []
+                subItems: [
+                  {
+                    id: "pages-1-auth-1-basic-1",
+                    title: "Basic-1",
+                    parentTitle: "Basic",
+                    groupName: 'PAGES',
+                    link: "#",
+                    isActive: false,
+                    icon: "-",
+                    subItems: []
+                  }
+                ]
               }
             ]
           }
@@ -62,6 +78,7 @@ export const navItems: {
         id: "pages-2",
         title: "Pages",
         parentTitle: "PAGES",
+        groupName: 'PAGES',
         link: "#",
         isActive: false,
         icon: "PagesIcon",
