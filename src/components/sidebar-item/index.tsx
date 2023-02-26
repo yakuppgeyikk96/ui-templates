@@ -4,6 +4,7 @@ import AuthIcon from "../../icons/AuthIcon";
 import PagesIcon from "../../icons/PagesIcon";
 import ArrowDropUpIcon from "../../icons/ArrowDropUpIcon";
 import ArrowDropDownIcon from "../../icons/ArrowDropDownIcon";
+import SubItem from "./sub-item";
 
 const icons = {
   DashboardIcon,
@@ -44,13 +45,13 @@ export default function SidebarItem({
           </div>
         )}
       </div>
-      <div>
-        {item.subItems.map((subItem) => {
-          return (
-            <div className="ml-14 text-sm text-iconPassive">{subItem.title}</div>
-          )
-        })}
-      </div>
+      {item.isActive && (
+        <div>
+          {item.subItems.map((subItem) => {
+            return <SubItem item={subItem} />;
+          })}
+        </div>
+      )}
     </>
   );
 }

@@ -44,7 +44,17 @@ export const navItems: {
             link: "#",
             isActive: false,
             icon: "-",
-            subItems: []
+            subItems: [
+              {
+                id: "pages-1-auth-1-basic",
+                title: "Basic",
+                parentTitle: "Authentication",
+                link: "#",
+                isActive: false,
+                icon: "-",
+                subItems: []
+              }
+            ]
           }
         ]
       },

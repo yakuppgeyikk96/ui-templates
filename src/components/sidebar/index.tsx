@@ -15,7 +15,7 @@ export default function Sidebar() {
             ...pState,
             items: pState.items.map((i) => {
               if (i.id === item.id) {
-                return { ...item, isActive: true };
+                return { ...item, isActive: !item.isActive };
               }
               else {
                 return {
