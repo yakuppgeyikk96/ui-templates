@@ -21,7 +21,7 @@ export const navItems: {
         parentTitle: "MENU",
         title: "Dashboard",
         groupName: 'MENU',
-        link: "#",
+        link: "/",
         isActive: true,
         icon: "DashboardIcon",
         subItems: [],
@@ -63,7 +63,7 @@ export const navItems: {
                     title: "Basic-1",
                     parentTitle: "Basic",
                     groupName: 'PAGES',
-                    link: "#",
+                    link: "auth/basic1",
                     isActive: false,
                     icon: "-",
                     subItems: []
@@ -79,7 +79,7 @@ export const navItems: {
         title: "Pages",
         parentTitle: "PAGES",
         groupName: 'PAGES',
-        link: "#",
+        link: "/pages",
         isActive: false,
         icon: "PagesIcon",
         subItems: []

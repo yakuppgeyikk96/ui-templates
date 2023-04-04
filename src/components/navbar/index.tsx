@@ -5,17 +5,23 @@ import NotificationIcon from "../../icons/NotificationIcon";
 import SearchIcon from "../../icons/SearchIcon";
 import SunIcon from "../../icons/SunIcon";
 import profileImage from "../../assets/images/profile.jpg";
+import ArrowLeftIcon from "../../icons/ArrowLeftIcon";
 
-export default function Navbar() {
+export default function Navbar({
+  sidebarOpen,
+  setSidebarOpen
+}) {
   return (
     <nav className="border-primaryBorderColor border-2 h-16 flex justify-between">
       <div id="leftbar" className="flex gap-2">
         <div
           id="menu-icon"
           className="w-16 h-full flex justify-center items-center cursor-pointer"
+          onClick={() => setSidebarOpen(!sidebarOpen)}
         >
-          {/* <ArrowLeftIcon /> */}
-          <MenuIcon />
+          {
+            sidebarOpen ? <ArrowLeftIcon /> : <MenuIcon />
+          }
         </div>
         <div
           id="searchbar"

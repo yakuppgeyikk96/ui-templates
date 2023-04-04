@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import logo from "../../assets/images/logo.png";
 import { NavItem, navItems } from "../../constants/sidebarItems";
 import SidebarItem from "../sidebar-item";
 
 export default function Sidebar() {
   const [sidebarItems, setSidebarItems] = useState(navItems);
+  const [sidebarWidth, setSidebarWidth] = useState('w-0');
 
   const deactivateOtherItems = (navItems: { mainTitle: string; items: NavItem[] }[], clickedItemId: string) => {
     for (const navItem of navItems) {
@@ -44,8 +45,13 @@ export default function Sidebar() {
     setSidebarItems(() => [...navItems]);
   };
 
+  useEffect(() => {
+    setSidebarWidth('w-60');
+  }, [])
+  
+
   return (
-    <aside className="w-60">
+    <aside className={`${sidebarWidth} overflow-hidden transition-all duration-500`}>
       <div className="h-16 w-full flex items-center">
         <div className="w-16 flex justify-center">
           <img src={logo} alt="logo" width={32} />
