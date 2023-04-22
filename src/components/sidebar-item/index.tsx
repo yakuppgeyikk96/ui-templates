@@ -6,7 +6,9 @@ import ArrowDropUpIcon from '../../icons/ArrowDropUpIcon'
 import ArrowDropDownIcon from '../../icons/ArrowDropDownIcon'
 import { NavLink } from 'react-router-dom'
 
-const icons = {
+type IconType = React.FC<{ color: string; size: string }>
+
+const icons: { [key: string]: IconType } = {
   DashboardIcon,
   AuthIcon,
   PagesIcon,
@@ -41,12 +43,16 @@ export default function SidebarItem({
         </div>
       </>
     )
-    
+
     if (subItems.length === 0) {
-      return <NavLink className='flex items-center' to={link}>{staticContent}</NavLink>
+      return (
+        <NavLink className='flex items-center' to={link}>
+          {staticContent}
+        </NavLink>
+      )
     }
 
-    return staticContent;
+    return staticContent
   }
 
   return (
