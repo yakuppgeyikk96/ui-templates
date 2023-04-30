@@ -6,6 +6,10 @@ import UserIcon from '../../icons/UserIcon'
 export default function LoginPage1() {
   const [color, setColor] = useState('#FF4A4A')
 
+  const rememberCheckboxClass = `accent-[${color}]`
+
+  console.log(rememberCheckboxClass)
+
   return (
     <div className='h-mainScreen flex flex-col gap-4 justify-center items-center'>
       <input
@@ -51,7 +55,13 @@ export default function LoginPage1() {
           </div>
           <div className='flex justify-between items-center text-xxs'>
             <div className='flex items-center gap-1'>
-              <input type='checkbox' />
+              <input
+                type='checkbox'
+                style={{
+                  accentColor: color,
+                }}
+                checked
+              />
               <span>Remember me</span>
             </div>
             <a className='text-iconPassive' href='#'>
