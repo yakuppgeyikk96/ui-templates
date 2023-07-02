@@ -7,7 +7,7 @@ export interface NavItem {
   isActive: boolean;
   icon: string;
   subItems: NavItem[];
-};
+}
 
 export const navItems: {
   mainTitle: string;
@@ -20,13 +20,13 @@ export const navItems: {
         id: "menu-1",
         parentTitle: "MENU",
         title: "Dashboard",
-        groupName: 'MENU',
+        groupName: "MENU",
         link: "/",
         isActive: true,
         icon: "DashboardIcon",
         subItems: [],
-      }
-    ]
+      },
+    ],
   },
   {
     mainTitle: "PAGES",
@@ -35,7 +35,7 @@ export const navItems: {
         id: "pages-1",
         title: "Authentication",
         parentTitle: "PAGES",
-        groupName: 'PAGES',
+        groupName: "PAGES",
         link: "#",
         isActive: false,
         icon: "AuthIcon",
@@ -44,46 +44,45 @@ export const navItems: {
             id: "pages-1-auth-1",
             title: "Sign In",
             parentTitle: "Authentication",
-            groupName: 'PAGES',
+            groupName: "PAGES",
             link: "#",
             isActive: false,
             icon: "-",
             subItems: [
               {
-                id: "pages-1-auth-1-basic",
-                title: "Basic",
+                id: "pages-1-auth-1-demo-1",
+                title: "Demo1",
                 parentTitle: "Sign In",
-                groupName: 'PAGES',
-                link: "#",
+                groupName: "PAGES",
+                link: "auth/demo1",
                 isActive: false,
                 icon: "-",
-                subItems: [
-                  {
-                    id: "pages-1-auth-1-basic-1",
-                    title: "Basic-1",
-                    parentTitle: "Basic",
-                    groupName: 'PAGES',
-                    link: "auth/basic1",
-                    isActive: false,
-                    icon: "-",
-                    subItems: []
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+                subItems: [],
+              },
+              {
+                id: "pages-1-auth-1-demo-2",
+                title: "Demo2",
+                parentTitle: "Sign In",
+                groupName: "PAGES",
+                link: "auth/demo2",
+                isActive: false,
+                icon: "-",
+                subItems: [],
+              },
+            ],
+          },
+        ],
       },
       {
         id: "pages-2",
         title: "Pages",
         parentTitle: "PAGES",
-        groupName: 'PAGES',
+        groupName: "PAGES",
         link: "/pages",
         isActive: false,
         icon: "PagesIcon",
-        subItems: []
-      }
-    ]
-  }
+        subItems: [],
+      },
+    ],
+  },
 ];
