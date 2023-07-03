@@ -1,9 +1,14 @@
+import { useEffect, useState } from "react";
+import IconEye from "../../assets/icons/IconEye";
 import IconFacebook from "../../assets/icons/IconFacebook";
 import IconGooglePlus from "../../assets/icons/IconGooglePlus";
 import IconTwitter from "../../assets/icons/IconTwitter";
 import logo from "../../assets/images/logo.png";
+import IconEyeSlash from "../../assets/icons/IconEyeSlash";
 
 export default function LoginPage2() {
+  const [hidePassword, setHidePassword] = useState<boolean>(true);
+
   return (
     <section className="h-mainScreen relative">
       <div className="absolute bg-loginDemo2Bg h-full w-full bg-cover bg-no-repeat bg-center brightness-50"></div>
@@ -42,7 +47,61 @@ export default function LoginPage2() {
               </div>
             </div>
           </div>
-          <div className="w-2/3 h-full"></div>
+          <div className="w-2/3 h-full flex flex-col items-center gap-8 pt-16 px-8">
+            <div className="flex flex-col items-center gap-4">
+              <p className="text-xl font-bold">Login to your account</p>
+              <p className="text-sm">
+                Don't have an account?{" "}
+                <a href="#" className="text-blue-700 font-semibold">
+                  Sign Up Free!
+                </a>
+              </p>
+            </div>
+            <div className="flex flex-col items-center gap-4 w-full">
+              <div className="border border-slate-400 w-full rounded-md px-4 py-2 shadow-md">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="focus:outline-none w-full"
+                />
+              </div>
+              <div className="border border-slate-400 w-full rounded-md px-4 py-2 shadow-md flex justify-between">
+                <input
+                  type={hidePassword ? "password" : "text"}
+                  placeholder="Password"
+                  className="focus:outline-none w-full"
+                />
+                {hidePassword ? (
+                  <IconEyeSlash
+                    size={16}
+                    className="cursor-pointer"
+                    onClick={() => setHidePassword(false)}
+                  />
+                ) : (
+                  <IconEye
+                    size={16}
+                    className="cursor-pointer"
+                    onClick={() => setHidePassword(true)}
+                  />
+                )}
+              </div>
+            </div>
+            <div className="flex justify-between items-center w-full">
+              <div className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  className="w-5 h-5 rounded accent-blue-500"
+                />
+                <span className="text-sm">Remember me</span>
+              </div>
+              <a href="#" className="text-blue-700 text-sm font-semibold">
+                Forgot Password?
+              </a>
+            </div>
+            <button className="bg-blue-700 w-full rounded py-2 text-white shadow-blue-300 drop-shadow-lg hover:bg-blue-600 active:drop-shadow-none transition-all duration-300">
+              Login with Email
+            </button>
+          </div>
         </div>
       </div>
     </section>
